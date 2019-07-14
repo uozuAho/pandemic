@@ -55,7 +55,7 @@ function* shuffleDecksAndCreateGame(players, difficulty) {
   const infectionDeck = shuffle(INFECTION_DECK);
   yield put(createGame(players, playerDeck, infectionDeck, difficulty));
 
-  browserHistory.push('/play');
+  browserHistory && browserHistory.push('/play');
 }
 
 export function* dealCardsToPlayers() {
@@ -148,9 +148,13 @@ export function* watchCreateCustomGame() {
 
 export function* watchDealCards() {
   while (true) { // eslint-disable-line no-constant-condition
+    console.log('a');
     const action = yield take(types.DEAL_CARDS_INIT);
+    console.log('b');
     const task = yield fork(dealCardsToPlayers, action);
+    console.log('c');
     yield fork(takeLatest, LOCATION_CHANGE, cancelDealCards, task);
+    console.log('d');
   }
 }
 
