@@ -90,6 +90,7 @@
     "npm-run-all": "1.8.0",
     "postcss-loader": "^0.9.1",
     "react-addons-test-utils": "15.0.2",
+    "readline-sync": "^1.4.9",
     "redux-immutable-state-invariant": "1.2.3",
     "rimraf": "2.5.2",
     "sass-loader": "3.2.0",
