@@ -91,7 +91,8 @@ export function* dealCardsToPlayers() {
   }
 
   yield take(types.ANIMATION_INSERT_EPIDEMIC_CARDS_COMPLETE);
-  yield call(delay, 1000);
+  // todo: this blocks on nodejs. maybe make a config to set runtime env = browser/node
+  // yield call(delay, 1000);
 
   for (let i = 3; i > 0; i--) {
     for (let j = 0; j < 3; j++) {

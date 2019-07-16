@@ -1,6 +1,6 @@
 import configureStore from './store/configureStore.prod';
 import { moveInit } from './actions/mapActions';
-import { createQuickGameInit, dealCardsInit, animationDealCardsInitComplete } from './actions/globalActions';
+import { createQuickGameInit, dealCardsInit, animationDealCardsInitComplete, animationDealCardsComplete, animationInsertEpidemicCardsComplete, animationDrawInfectionCardComplete } from './actions/globalActions';
 
 import readlineSync from 'readline-sync';
 import fs from 'fs';
@@ -34,10 +34,14 @@ readlineSync.promptCLLoop({
     },
     init: () => {
         store.dispatch(createQuickGameInit(1));
-    },
-    deal: () => {
         store.dispatch(dealCardsInit());
         store.dispatch(animationDealCardsInitComplete());
+        store.dispatch(animationDealCardsComplete());
+        store.dispatch(animationInsertEpidemicCardsComplete());
+        while (store.getState().status === 'prepare') {
+            store.dispatch(animationDrawInfectionCardComplete());
+        }
+        console.log("now ready to play!");
     },
     m: () => { store.dispatch(moveInit(0)); },
     q: () => { return true; }
