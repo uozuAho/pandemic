@@ -11,7 +11,7 @@ import {
 
 import fs from 'fs';
 
-import { CommandHandler, Command } from './command_handler';
+import { CommandLoopRunner, Command } from './command_handler';
 
 const store = configureStore();
 
@@ -33,8 +33,8 @@ const commands = [
     new Command('do', 'yesh', () => {console.log('asdf')})
 ];
 
-const handler = new CommandHandler(commands);
-handler.runLoop();
+const handler = new CommandLoopRunner(commands);
+handler.run();
 
 // readlineSync.promptCLLoop({
 //     help: () => {

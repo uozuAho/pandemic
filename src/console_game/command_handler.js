@@ -9,13 +9,13 @@ export class Command {
     }
 }
 
-export class CommandHandler {
+export class CommandLoopRunner {
 
     constructor(commands) {
         this._commands = commands;
     }
 
-    runLoop() {
+    run() {
         const readlineSyncInput = this._mapCommandsToReadlineSyncInput(this._commands);
         readlineSync.promptCLLoop(readlineSyncInput);
     }

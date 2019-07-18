@@ -1,15 +1,15 @@
-type CommandHandlerydoo = (...args: string[]) => boolean | void;
+type CommandHandler = (...args: string[]) => boolean | void;
 
 export class Command {
     public name: string;
     public description: string;
-    public handler: CommandHandlerydoo;
+    public handler: CommandHandler;
 
-    constructor(name: string, description: string, handler: CommandHandlerydoo)
+    constructor(name: string, description: string, handler: CommandHandler)
 }
 
-export class CommandHandler {
+export class CommandLoopRunner {
     constructor(commands: Command[])
 
-    public runLoop(): () => void;
+    public run(): () => void;
 }
