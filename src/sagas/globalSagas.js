@@ -55,7 +55,7 @@ function* shuffleDecksAndCreateGame(players, difficulty) {
   const infectionDeck = shuffle(INFECTION_DECK);
   yield put(createGame(players, playerDeck, infectionDeck, difficulty));
 
-  browserHistory.push('/play');
+  browserHistory && browserHistory.push('/play');
 }
 
 export function* dealCardsToPlayers() {
@@ -91,7 +91,8 @@ export function* dealCardsToPlayers() {
   }
 
   yield take(types.ANIMATION_INSERT_EPIDEMIC_CARDS_COMPLETE);
-  yield call(delay, 1000);
+  // todo: this blocks on nodejs. maybe make a config to set runtime env = browser/node
+  // yield call(delay, 1000);
 
   for (let i = 3; i > 0; i--) {
     for (let j = 0; j < 3; j++) {
@@ -148,9 +149,13 @@ export function* watchCreateCustomGame() {
 
 export function* watchDealCards() {
   while (true) { // eslint-disable-line no-constant-condition
+    console.log('a');
     const action = yield take(types.DEAL_CARDS_INIT);
+    console.log('b');
     const task = yield fork(dealCardsToPlayers, action);
+    console.log('c');
     yield fork(takeLatest, LOCATION_CHANGE, cancelDealCards, task);
+    console.log('d');
   }
 }
 

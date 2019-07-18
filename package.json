@@ -4,7 +4,6 @@
   "description": "A Redux-based implementation of the board game Pandemic",
   "scripts": {
     "start-message": "babel-node tools/startMessage.js",
-    "postinstall": "npm run build",
     "prestart": "npm-run-all --parallel start-message remove-dist",
     "start": "npm-run-all --parallel test:watch open:src lint:watch",
     "open:src": "babel-node tools/srcServer.js",
@@ -14,12 +13,12 @@
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",
     "build:html": "babel-node tools/buildHtml.js",
-    "prebuild": "npm run clean-dist && npm run build:html && npm run lint && npm run test",
     "build": "babel-node tools/build.js",
     "test": "mocha tools/testSetup.js \"src/**/*.spec.js\" --reporter progress",
     "test:cover": "babel-node node_modules/isparta/bin/isparta cover --include-all-sources --root src --report html node_modules/mocha/bin/_mocha -- --require ./tools/testSetup.js \"src/**/*.spec.js\" --reporter progress",
     "test:cover:travis": "babel-node isparta cover --include-all-sources --root src --report lcovonly _mocha -- --require ./tools/testSetup.js \"src/**/*.spec.js\" && cat ./coverage/lcov.info | coveralls.js",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "console": "node -r esm src/console_game/console_player.js"
   },
   "author": "Alex Zherdev",
   "license": "MIT",
@@ -81,6 +80,7 @@
     "eslint-plugin-jsx-a11y": "1.0.4",
     "eslint-plugin-react": "5.0.1",
     "eslint-watch": "2.1.11",
+    "esm": "^3.2.25",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.8.5",
     "git-revision-webpack-plugin": "^2.2.0",
@@ -90,6 +90,7 @@
     "npm-run-all": "1.8.0",
     "postcss-loader": "^0.9.1",
     "react-addons-test-utils": "15.0.2",
+    "readline-sync": "^1.4.9",
     "redux-immutable-state-invariant": "1.2.3",
     "rimraf": "2.5.2",
     "sass-loader": "3.2.0",

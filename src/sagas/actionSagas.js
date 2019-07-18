@@ -192,3 +192,11 @@ export function* watchCureInit() {
 export function* watchForMoveComplete() {
   yield* takeEvery(types.PLAYER_MOVE_TO_CITY, movedToCity);
 }
+
+function* logToConsole(action) {
+  yield call(() => console.log(action));
+}
+
+export function* watchAllForConsole() {
+  yield* takeEvery('*', a => logToConsole(a));
+}
