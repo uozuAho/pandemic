@@ -57,31 +57,4 @@ const commands = [
 const handler = new CommandLoopRunner(commands);
 handler.run();
 
-// readlineSync.promptCLLoop({
-//     sc: () => {
-//         const currentMoveState = JSON.stringify(store.getState().currentMove, null, 2);
-//         console.log(currentMoveState);
-//     },
-//     // todo: command for full state, since it has map details
-//     sf: () => {
-//         const stateStr = JSON.stringify(getInterestingState(), null, 2);
-//         fs.writeFileSync('current_state.json', stateStr, e => {
-//             console.log(e);
-//         });
-//     },
-//     init: () => {
-//         store.dispatch(createQuickGameInit(1));
-//         store.dispatch(dealCardsInit());
-//         store.dispatch(animationDealCardsInitComplete());
-//         store.dispatch(animationDealCardsComplete());
-//         store.dispatch(animationInsertEpidemicCardsComplete());
-//         while (store.getState().status === 'prepare') {
-//             store.dispatch(animationDrawInfectionCardComplete());
-//         }
-//         console.log("now ready to play!");
-//     },
-//     m: () => { store.dispatch(moveInit(0)); },
-//     q: () => { return true; }
-// });
-
 console.log('Done');

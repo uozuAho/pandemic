@@ -13,6 +13,12 @@ export class CommandLoopRunner {
 
     constructor(commands) {
         this._commands = commands;
+        this._commands.push(new Command('q', 'quit', () => true));
+        this._commands.push(new Command('l', 'print available commands', () => {
+            for (const command of this._commands) {
+                console.log(`${command.name}: ${command.description}`);
+            }
+        }));
     }
 
     run() {
