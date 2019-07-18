@@ -29,17 +29,35 @@ const getInterestingState = () => {
 }
 
 const commands = [
-    new Command('help', 'print help', () => {console.log('yo')}),
-    new Command('do', 'yesh', () => {console.log('asdf')})
+    new Command('sc', 'print player state', () => {
+        const currentMoveState = JSON.stringify(store.getState().currentMove, null, 2);
+        console.log(currentMoveState);
+    }),
+    // todo: command for full state, since it has map details
+    new Command('sf', 'print interesting state to file', () => {
+        const stateStr = JSON.stringify(getInterestingState(), null, 2);
+        fs.writeFileSync('current_state.json', stateStr, e => {
+            console.log(e);
+        });
+    }),
+    new Command('init', 'initialise game', () => {
+        store.dispatch(createQuickGameInit(1));
+        store.dispatch(dealCardsInit());
+        store.dispatch(animationDealCardsInitComplete());
+        store.dispatch(animationDealCardsComplete());
+        store.dispatch(animationInsertEpidemicCardsComplete());
+        while (store.getState().status === 'prepare') {
+            store.dispatch(animationDrawInfectionCardComplete());
+        }
+        console.log("now ready to play!");
+    }),
+    new Command('m', 'move', () => { store.dispatch(moveInit(0));})
 ];
 
 const handler = new CommandLoopRunner(commands);
 handler.run();
 
 // readlineSync.promptCLLoop({
-//     help: () => {
-//         console.log('yo');
-//     },
 //     sc: () => {
 //         const currentMoveState = JSON.stringify(store.getState().currentMove, null, 2);
 //         console.log(currentMoveState);
