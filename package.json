@@ -18,7 +18,7 @@
     "test:cover": "babel-node node_modules/isparta/bin/isparta cover --include-all-sources --root src --report html node_modules/mocha/bin/_mocha -- --require ./tools/testSetup.js \"src/**/*.spec.js\" --reporter progress",
     "test:cover:travis": "babel-node isparta cover --include-all-sources --root src --report lcovonly _mocha -- --require ./tools/testSetup.js \"src/**/*.spec.js\" && cat ./coverage/lcov.info | coveralls.js",
     "test:watch": "npm run test -- --watch",
-    "console": "node -r esm src/console_player.js"
+    "console": "node -r esm src/console_game/console_player.js"
   },
   "author": "Alex Zherdev",
   "license": "MIT",

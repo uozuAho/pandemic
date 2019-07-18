@@ -1,6 +1,13 @@
-import configureStore from './store/configureStore.prod';
-import { moveInit } from './actions/mapActions';
-import { createQuickGameInit, dealCardsInit, animationDealCardsInitComplete, animationDealCardsComplete, animationInsertEpidemicCardsComplete, animationDrawInfectionCardComplete } from './actions/globalActions';
+import configureStore from '../store/configureStore.prod';
+import { moveInit } from '../actions/mapActions';
+import {
+    createQuickGameInit,
+    dealCardsInit,
+    animationDealCardsInitComplete,
+    animationDealCardsComplete,
+    animationInsertEpidemicCardsComplete,
+    animationDrawInfectionCardComplete
+} from '../actions/globalActions';
 
 import readlineSync from 'readline-sync';
 import fs from 'fs';
