@@ -9,8 +9,9 @@ import {
     animationDrawInfectionCardComplete
 } from '../actions/globalActions';
 
-import readlineSync from 'readline-sync';
 import fs from 'fs';
+
+import { CommandHandler, Command } from './command_handler';
 
 const store = configureStore();
 
@@ -28,29 +29,9 @@ const getInterestingState = () => {
 }
 
 const commands = [
-    { name: 'help', description: 'print help info', handler: () => {console.log('yo')}},
-    { name: 'do', description: 'do stuff', handler: () => {console.log('do stuff')}}
+    new Command('help', 'print help', () => {console.log('yo')}),
+    new Command('do', 'yesh', () => {console.log('asdf')})
 ];
-
-class CommandHandler {
-
-    constructor(commands) {
-        this._commands = commands;
-    }
-
-    runLoop() {
-        const readlineSyncInput = this._mapCommandsToReadlineSyncInput(this._commands);
-        readlineSync.promptCLLoop(readlineSyncInput);
-    }
-
-    _mapCommandsToReadlineSyncInput(commands) {
-        const readlineSyncInput = {};
-        for (const command of commands) {
-            readlineSyncInput[command.name] = command.handler;
-        }
-        return readlineSyncInput;
-    }
-}
 
 const handler = new CommandHandler(commands);
 handler.runLoop();
