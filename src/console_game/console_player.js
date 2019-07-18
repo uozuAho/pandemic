@@ -19,7 +19,13 @@ const commands = [
     new Command('init', 'initialise game', () => {
         game.quickStartNewGame(1);
         console.log("now ready to play!");
-    })
+    }),
+    new Command('m', 'move', () => {
+        game.move('asdf');
+    }),
+    new Command('a', 'print available actions', () => {
+        console.log(game.getAvailableMoves());
+    }),
 ];
 
 const handler = new CommandLoopRunner(commands);

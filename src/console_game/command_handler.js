@@ -14,7 +14,7 @@ export class CommandLoopRunner {
     constructor(commands) {
         this._commands = commands;
         this._commands.push(new Command('q', 'quit', () => true));
-        this._commands.push(new Command('l', 'print available commands', () => { this._printHelp(); }));
+        this._commands.push(new Command('l', 'list available commands', () => { this._printHelp(); }));
     }
 
     run() {

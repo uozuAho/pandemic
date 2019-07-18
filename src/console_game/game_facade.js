@@ -7,6 +7,7 @@ import {
     animationInsertEpidemicCardsComplete,
     animationDrawInfectionCardComplete
 } from '../actions/globalActions';
+import { moveInit } from '../actions/mapActions';
 
 export class GameFacade {
 
@@ -25,6 +26,11 @@ export class GameFacade {
         }
     }
 
+    move(city) {
+        // todo: move to city
+        this._reduxStore.dispatch(moveInit(0));
+    }
+
     getSmallGameState() {
         const state = this._reduxStore.getState();
 
@@ -40,6 +46,13 @@ export class GameFacade {
 
     getFullGameState() {
         return this._reduxStore.getState();
+    }
+
+    getAvailableMoves() {
+        this._reduxStore.dispatch(moveInit(0));
+        const state = this.getFullGameState(0);
+        // todo: map to city objects
+        return state.currentMove.availableCities;
     }
 
     _resetState() {
