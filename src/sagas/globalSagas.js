@@ -149,13 +149,9 @@ export function* watchCreateCustomGame() {
 
 export function* watchDealCards() {
   while (true) { // eslint-disable-line no-constant-condition
-    console.log('a');
     const action = yield take(types.DEAL_CARDS_INIT);
-    console.log('b');
     const task = yield fork(dealCardsToPlayers, action);
-    console.log('c');
     yield fork(takeLatest, LOCATION_CHANGE, cancelDealCards, task);
-    console.log('d');
   }
 }
 
