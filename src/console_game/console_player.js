@@ -20,8 +20,8 @@ const commands = [
         game.quickStartNewGame(1);
         console.log("now ready to play!");
     }),
-    new Command('m', 'move', () => {
-        game.move('asdf');
+    new Command('m', 'move', cityName => {
+        game.move(cityName);
     }),
     new Command('a', 'print available actions', () => {
         console.log(game.getAvailableMoves());

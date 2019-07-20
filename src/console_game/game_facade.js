@@ -5,9 +5,12 @@ import {
     animationDealCardsInitComplete,
     animationDealCardsComplete,
     animationInsertEpidemicCardsComplete,
-    animationDrawInfectionCardComplete
+    animationDrawInfectionCardComplete,
+    animationMoveComplete
 } from '../actions/globalActions';
-import { moveInit } from '../actions/mapActions';
+import { getAvailableCities } from '../selectors/cities';
+import { moveInit, moveToCity } from '../actions/mapActions';
+import { getCurrentPlayer } from '../selectors';
 
 export class GameFacade {
 
@@ -27,8 +30,18 @@ export class GameFacade {
     }
 
     move(city) {
-        // todo: move to city
-        this._reduxStore.dispatch(moveInit(0));
+        console.log('move to ' + city);
+
+        const state = this.getFullGameState();
+        const player = getCurrentPlayer(state);
+        const playerLocationId = state.map.playersLocations[player.id];
+        const moveAction = this.getAvailableMoves().filter(m => m.cityName === city)[0];
+
+        console.log(moveAction);
+
+        this._reduxStore.dispatch(moveInit(player.id));
+        this._reduxStore.dispatch(moveToCity(player.id, playerLocationId, moveAction.cityId, moveAction.moveType));
+        this._reduxStore.dispatch(animationMoveComplete());
     }
 
     getSmallGameState() {
@@ -49,13 +62,21 @@ export class GameFacade {
     }
 
     getAvailableMoves() {
-        this._reduxStore.dispatch(moveInit(0));
         const state = this.getFullGameState(0);
-        // todo: map to city objects
-        return state.currentMove.availableCities;
+        const cities = getAvailableCities(state);
+        return Object.keys(cities).map(k =>
+            new MoveAction(cities[k]['id'], cities[k]['name'], cities[k]['source']));
     }
 
     _resetState() {
         this._reduxStore = configureStore();
+    }
+}
+
+class MoveAction {
+    constructor(cityId, cityName, moveType) {
+        this.cityId = cityId;
+        this.cityName = cityName;
+        this.moveType = moveType;
     }
 }
