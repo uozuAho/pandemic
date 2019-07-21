@@ -1,16 +1,11 @@
-import configureStore from '../store/configureStore.prod';
+import configureStore from '../../store/configureStore.prod';
 import {
     createQuickGameInit,
     dealCardsInit,
-    animationDealCardsInitComplete,
-    animationDealCardsComplete,
-    animationInsertEpidemicCardsComplete,
-    animationDrawInfectionCardComplete,
-    animationMoveComplete
-} from '../actions/globalActions';
-import { getAvailableCities } from '../selectors/cities';
-import { moveInit, moveToCity } from '../actions/mapActions';
-import { getCurrentPlayer } from '../selectors';
+} from '../../actions/globalActions';
+import { getAvailableCities } from '../../selectors/cities';
+import { moveInit, moveToCity } from '../../actions/mapActions';
+import { getCurrentPlayer } from '../../selectors';
 
 export class GameFacade {
 
@@ -21,27 +16,16 @@ export class GameFacade {
         const store = this._reduxStore;
         store.dispatch(createQuickGameInit(numPlayers));
         store.dispatch(dealCardsInit());
-        store.dispatch(animationDealCardsInitComplete());
-        store.dispatch(animationDealCardsComplete());
-        store.dispatch(animationInsertEpidemicCardsComplete());
-        while (store.getState().status === 'prepare') {
-            store.dispatch(animationDrawInfectionCardComplete());
-        }
     }
 
     move(city) {
-        console.log('move to ' + city);
-
         const state = this.getFullGameState();
         const player = getCurrentPlayer(state);
         const playerLocationId = state.map.playersLocations[player.id];
         const moveAction = this.getAvailableMoves().filter(m => m.cityName === city)[0];
 
-        console.log(moveAction);
-
         this._reduxStore.dispatch(moveInit(player.id));
         this._reduxStore.dispatch(moveToCity(player.id, playerLocationId, moveAction.cityId, moveAction.moveType));
-        this._reduxStore.dispatch(animationMoveComplete());
     }
 
     getSmallGameState() {

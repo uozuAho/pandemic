@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { GameFacade } from "./game_facade";
-import cities from '../constants/cities';
+import cities from '../../constants/cities';
 
 describe('game_facade', () => {
 
