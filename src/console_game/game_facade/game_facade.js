@@ -1,11 +1,11 @@
-import configureStore from '../store/configureStore.prod';
+import configureStore from '../../store/configureStore.prod';
 import {
     createQuickGameInit,
     dealCardsInit,
-} from '../actions/globalActions';
-import { getAvailableCities } from '../selectors/cities';
-import { moveInit, moveToCity } from '../actions/mapActions';
-import { getCurrentPlayer } from '../selectors';
+} from '../../actions/globalActions';
+import { getAvailableCities } from '../../selectors/cities';
+import { moveInit, moveToCity } from '../../actions/mapActions';
+import { getCurrentPlayer } from '../../selectors';
 
 export class GameFacade {
 

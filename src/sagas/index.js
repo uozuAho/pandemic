@@ -4,7 +4,7 @@ import { watchCreateQuickGame, watchCreateCustomGame, watchVictory, watchOutbrea
   watchDealCards } from './globalSagas';
 import { watchEvents } from './eventSagas';
 import { watchMedicAirlift, watchContPlannerInit, watchDispatcherMove, watchCureDisease } from './roleSagas';
-import { getConsoleActionWatchers } from '../console_game/action_listeners';
+import { getConsoleActionWatchers } from '../console_game/game_facade/action_listeners';
 
 let watchers = [
   watchCreateQuickGame(),

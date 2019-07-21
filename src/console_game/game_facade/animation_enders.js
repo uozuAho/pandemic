@@ -1,14 +1,14 @@
 import { takeEvery } from 'redux-saga';
 import { select, put } from 'redux-saga/effects';
 
-import * as types from '../constants/actionTypes';
+import * as types from '../../constants/actionTypes';
 import {
     animationDealCardsInitComplete,
     animationDealCardsComplete,
     animationInsertEpidemicCardsComplete,
     animationDrawInfectionCardComplete,
     animationMoveComplete
-} from '../actions/globalActions';
+} from '../../actions/globalActions';
 
 function* endDealAnimations() {
     yield put(animationDealCardsInitComplete());
