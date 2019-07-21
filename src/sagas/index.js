@@ -1,10 +1,10 @@
-import { watchActionsLeft, watchMoveInit, watchMoveToCity, watchShareInit, watchCureInit, watchBuildStation, watchAllForConsole } from './actionSagas';
+import { watchActionsLeft, watchMoveInit, watchMoveToCity, watchShareInit, watchCureInit, watchBuildStation } from './actionSagas';
 import { watchTreatEradication, watchCureEradication } from './diseaseSagas';
 import { watchCreateQuickGame, watchCreateCustomGame, watchVictory, watchOutbreaksDefeat,
   watchDealCards } from './globalSagas';
 import { watchEvents } from './eventSagas';
 import { watchMedicAirlift, watchContPlannerInit, watchDispatcherMove, watchCureDisease } from './roleSagas';
-import { watchDealCardsInit, watchMoveToCity2 } from '../console_game/animation_enders';
+import { getConsoleActionWatchers } from '../console_game/action_listeners';
 
 let watchers = [
   watchCreateQuickGame(),
@@ -27,14 +27,9 @@ let watchers = [
   watchCureDisease()
 ];
 
-// todo: how to determine if running in console?
-// if (window === undefined) {
-  watchers = watchers.concat([
-    watchAllForConsole(),
-    watchDealCardsInit(),
-    watchMoveToCity2()
-  ]);
-// }
+if (typeof window === 'undefined') {
+  watchers = watchers.concat(getConsoleActionWatchers());
+}
 
 export default function* rootSaga() {
   yield watchers;

@@ -25,7 +25,7 @@ function* endDealAnimations() {
     }
 }
 
-export function* watchDealCardsInit() {
+export function* consoleWatchDealCardsInit() {
     yield* takeEvery(types.DEAL_CARDS_INIT, endDealAnimations);
 }
 
@@ -33,6 +33,6 @@ function* endMoveAnimations() {
     yield put(animationMoveComplete());
 }
 
-export function* watchMoveToCity2() {
+export function* consoleWatchMoveToCity() {
     yield* takeEvery(types.PLAYER_MOVE_TO_CITY, endMoveAnimations);
 }
