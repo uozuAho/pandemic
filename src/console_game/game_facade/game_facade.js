@@ -41,6 +41,11 @@ export class GameFacade {
         }
     }
 
+    setState(state) {
+        console.log('todo: set state :)');
+        // this._reduxStore.dispatch();
+    }
+
     getFullGameState() {
         return this._reduxStore.getState();
     }

@@ -37,4 +37,6 @@ dist
 
 docs/
 
+# various debugging state outputs
 current_state*.json
+init_state.json

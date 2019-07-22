@@ -2,6 +2,7 @@ export class GameFacade {
     quickStartNewGame: (numPlayers: number) => void;
     move: (cityName: string) => void;
     getSmallGameState: () => GameState;
+    setState: (state: GameState) => void;
     getFullGameState: () => GameState;
     getAvailableMoves: () => MoveAction[];
 }

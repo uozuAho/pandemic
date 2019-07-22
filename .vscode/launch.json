@@ -15,6 +15,16 @@
             ],
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug file",
+            "program": "${file}",
+            "runtimeArgs": [
+                "-r",
+                "esm",
+            ]
         }
     ]
 }
