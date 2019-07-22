@@ -124,7 +124,10 @@ export function* drawPlayerCards() {
 
     if (bothEpidemics) {
       const currentPlayer = yield select(sel.getCurrentPlayer);
-      yield delay(3000);
+      // delays aren't nice when running in nodejs
+      if (typeof window !== 'undefined') {
+        yield delay(3000);
+      }
       yield put(drawCardsHandle(cards[0], currentPlayer.id));
       yield put(drawCardsHandle(cards[1], currentPlayer.id));
       yield call(yieldEpidemic);
