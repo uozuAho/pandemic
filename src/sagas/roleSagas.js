@@ -1,5 +1,4 @@
-import { takeEvery } from 'redux-saga';
-import { put, select, take, call } from 'redux-saga/effects';
+import { put, select, take, call, takeEvery } from 'redux-saga/effects';
 
 import { medicTreatCuredDiseases } from '../actions/diseaseActions';
 import { opsShowCardsToDiscard, contPlannerShowEventsFromDiscard } from '../actions/cardActions';

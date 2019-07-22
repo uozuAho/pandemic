@@ -1,5 +1,4 @@
-import { takeEvery } from 'redux-saga';
-import { call } from 'redux-saga/effects';
+import { call, takeEvery } from 'redux-saga/effects';
 
 import { animationEndWatchers } from "./animation_enders";
 

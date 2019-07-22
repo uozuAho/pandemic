@@ -1,5 +1,4 @@
-import { takeEvery, delay } from 'redux-saga';
-import { select, put, take, fork, cancel, call } from 'redux-saga/effects';
+import { select, put, take, fork, cancel, call, takeEvery } from 'redux-saga/effects';
 
 import { moveShowCities, moveComplete } from '../actions/mapActions';
 import { cureDiseaseShowCards } from '../actions/diseaseActions';

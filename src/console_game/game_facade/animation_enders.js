@@ -1,5 +1,4 @@
-import { takeEvery } from 'redux-saga';
-import { select, put } from 'redux-saga/effects';
+import { select, put, takeEvery } from 'redux-saga/effects';
 
 import * as types from '../../constants/actionTypes';
 import {

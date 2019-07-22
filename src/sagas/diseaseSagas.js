@@ -1,5 +1,4 @@
-import { takeEvery } from 'redux-saga';
-import { put, select, call, take } from 'redux-saga/effects';
+import { put, select, call, take, takeEvery } from 'redux-saga/effects';
 
 import { initOutbreak, infectCities, infectCity, infectNeighbor, queueOutbreak,
   completeOutbreak, useDiseaseCubes, eradicateDisease, medicPreventInfection, quarSpecPreventInfection } from '../actions/diseaseActions';

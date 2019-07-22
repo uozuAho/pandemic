@@ -1,5 +1,5 @@
-import { takeEvery, takeLatest, delay, END } from 'redux-saga';
-import { put, select, call, take, fork, cancel } from 'redux-saga/effects';
+import { END } from 'redux-saga';
+import { put, select, call, take, fork, cancel, takeEvery, takeLatest, delay } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { difference, sample, sampleSize, shuffle } from 'lodash';
