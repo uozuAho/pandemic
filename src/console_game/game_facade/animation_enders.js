@@ -12,6 +12,8 @@ import {
     animationInfectNeighborComplete,
     animationCureDiseaseComplete
 } from '../../actions/globalActions';
+import { drawCardsHandle } from '../../actions/cardActions';
+import { getCurrentPlayer } from '../../selectors';
 
 export const animationEndWatchers = [
     watchDealCardsInit(),
@@ -19,7 +21,9 @@ export const animationEndWatchers = [
     watchDiscardInit(),
     watchDrawCardsInit(),
     watchInfectNeighbour(),
-    watchCureDisease()
+    watchCureDisease(),
+    watchDrawCardsHandleInit(),
+    watchInfectCity()
 ];
 
 function* endDealAnimations() {
@@ -80,4 +84,23 @@ function* endCureDiseaseAnimation() {
 
 function* watchCureDisease() {
     yield takeEvery(types.PLAYER_CURE_DISEASE_COMPLETE, endCureDiseaseAnimation);
+}
+
+function* handleDrawCardsInit(action) {
+    // not ending an animation, but this action is dispatched from a react component, tsk tsk
+    const currentPlayer = yield select(getCurrentPlayer);
+    yield put(drawCardsHandle(action.card, currentPlayer.id));
+}
+
+function* watchDrawCardsHandleInit() {
+    yield takeEvery(types.CARD_DRAW_CARDS_HANDLE_INIT, handleDrawCardsInit);
+}
+
+function* handleInfectCity() {
+    // not ending an animation, but this action is dispatched from a react component, tsk tsk
+    yield put(animationDrawInfectionCardComplete());
+}
+
+function* watchInfectCity() {
+    yield takeEvery(types.INFECT_CITY, handleInfectCity);
 }
