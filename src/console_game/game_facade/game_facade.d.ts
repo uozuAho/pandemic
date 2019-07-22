@@ -1,7 +1,9 @@
 export class GameFacade {
+    isFinished(): boolean;
     quickStartNewGame: (numPlayers: number) => void;
     move: (cityName: string) => void;
     getSmallGameState: () => GameState;
+    setState: (state: GameState) => void;
     getFullGameState: () => GameState;
     getAvailableMoves: () => MoveAction[];
 }
@@ -14,6 +16,7 @@ export class City {
 }
 
 export class GameState {
+    status: 'prepare' | 'playing' | 'victory' | 'defeat';
     currentMove: {
         player: number,
         availableCities: {[id: number]: City}

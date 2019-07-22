@@ -8,5 +8,6 @@ https://epidemic.netlify.com
 `npm run console`
 
 todo
+- configurable console log verbosity
+- dfs solver
 - config to disable some calls that don't work on console (see globalSagas todo)
-- config to disable action output to console

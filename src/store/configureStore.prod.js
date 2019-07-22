@@ -8,8 +8,13 @@ import rootSaga from '../sagas';
 
 export default function configureStore(initialState) {
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(rootReducer, initialState,
-    compose(applyMiddleware(sagaMiddleware), stateHistoryTracker()));
+  const store = createStore(
+    rootReducer,
+    initialState,
+    compose(
+      applyMiddleware(sagaMiddleware))
+      // stateHistoryTracker())
+  );
   sagaMiddleware.run(rootSaga);
   return store;
 }

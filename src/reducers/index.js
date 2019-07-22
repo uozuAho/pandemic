@@ -40,7 +40,10 @@ const combinedReducer = combineReducers({
 });
 
 export default (state, action) => {
-  if (action.type === types.CREATE_GAME) {
+  if (action.type === types.SET_STATE) {
+    return action.state;
+  }
+  else if (action.type === types.CREATE_GAME) {
     return {
       ...initialState,
       difficulty: action.difficulty,

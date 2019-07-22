@@ -6,10 +6,16 @@ import {
 import { getAvailableCities } from '../../selectors/cities';
 import { moveInit, moveToCity } from '../../actions/mapActions';
 import { getCurrentPlayer } from '../../selectors';
+import { setState } from '../console_redux_actions';
 
 export class GameFacade {
 
     constructor() {}
+
+    isFinished() {
+        const status = this._getState().status;
+        return status === 'victory' | status === 'defeat';
+    }
 
     quickStartNewGame(numPlayers) {
         this._resetState();
@@ -19,17 +25,22 @@ export class GameFacade {
     }
 
     move(city) {
-        const state = this.getFullGameState();
+        const state = this._getState();
         const player = getCurrentPlayer(state);
         const playerLocationId = state.map.playersLocations[player.id];
         const moveAction = this.getAvailableMoves().filter(m => m.cityName === city)[0];
 
-        this._reduxStore.dispatch(moveInit(player.id));
-        this._reduxStore.dispatch(moveToCity(player.id, playerLocationId, moveAction.cityId, moveAction.moveType));
+        if (moveAction === undefined) {
+            console.error(`no city with name '${city}' in available moves. Available moves:`);
+            console.error(this.getAvailableMoves());
+        } else {
+            this._reduxStore.dispatch(moveInit(player.id));
+            this._reduxStore.dispatch(moveToCity(player.id, playerLocationId, moveAction.cityId, moveAction.moveType));
+        }
     }
 
     getSmallGameState() {
-        const state = this._reduxStore.getState();
+        const state = this._getState();
 
         return {
             ...state,
@@ -41,15 +52,23 @@ export class GameFacade {
         }
     }
 
+    setState(state) {
+        this._reduxStore.dispatch(setState(state));
+    }
+
     getFullGameState() {
-        return this._reduxStore.getState();
+        return this._getState();
     }
 
     getAvailableMoves() {
-        const state = this.getFullGameState(0);
+        const state = this._getState();
         const cities = getAvailableCities(state);
         return Object.keys(cities).map(k =>
             new MoveAction(cities[k]['id'], cities[k]['name'], cities[k]['source']));
+    }
+
+    _getState() {
+        return this._reduxStore.getState();
     }
 
     _resetState() {
