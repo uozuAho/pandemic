@@ -9,6 +9,5 @@ https://epidemic.netlify.com
 
 todo
 - configurable console log verbosity
-- feed game state to console/ai player in same way
 - dfs solver
 - config to disable some calls that don't work on console (see globalSagas todo)

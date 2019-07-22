@@ -7,8 +7,15 @@ import {
     animationDealCardsComplete,
     animationInsertEpidemicCardsComplete,
     animationDrawInfectionCardComplete,
-    animationMoveComplete
+    animationMoveComplete,
+    animationCardDiscardFromHandComplete
 } from '../../actions/globalActions';
+
+export const animationEndWatchers = [
+    consoleWatchDealCardsInit(),
+    consoleWatchMoveToCity(),
+    consoleWatchDiscardInit()
+];
 
 function* endDealAnimations() {
     yield put(animationDealCardsInitComplete());
@@ -25,7 +32,7 @@ function* endDealAnimations() {
     }
 }
 
-export function* consoleWatchDealCardsInit() {
+function* consoleWatchDealCardsInit() {
     yield* takeEvery(types.DEAL_CARDS_INIT, endDealAnimations);
 }
 
@@ -33,6 +40,14 @@ function* endMoveAnimations() {
     yield put(animationMoveComplete());
 }
 
-export function* consoleWatchMoveToCity() {
+function* consoleWatchMoveToCity() {
     yield* takeEvery(types.PLAYER_MOVE_TO_CITY, endMoveAnimations);
+}
+
+function* endDiscardAnimation(action) {
+    yield put(animationCardDiscardFromHandComplete(action.cardType, action.playerId, action.id));
+}
+
+function* consoleWatchDiscardInit() {
+    yield* takeEvery(types.CARD_DISCARD_FROM_HAND_INIT, endDiscardAnimation);
 }
