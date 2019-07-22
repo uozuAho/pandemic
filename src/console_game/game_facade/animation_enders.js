@@ -39,7 +39,7 @@ function* endDealAnimations() {
 }
 
 function* watchDealCardsInit() {
-    yield* takeEvery(types.DEAL_CARDS_INIT, endDealAnimations);
+    yield takeEvery(types.DEAL_CARDS_INIT, endDealAnimations);
 }
 
 function* endMoveAnimations() {
@@ -47,7 +47,7 @@ function* endMoveAnimations() {
 }
 
 function* watchMoveToCity() {
-    yield* takeEvery(types.PLAYER_MOVE_TO_CITY, endMoveAnimations);
+    yield takeEvery(types.PLAYER_MOVE_TO_CITY, endMoveAnimations);
 }
 
 function* endDiscardAnimation(action) {
@@ -55,7 +55,7 @@ function* endDiscardAnimation(action) {
 }
 
 function* watchDiscardInit() {
-    yield* takeEvery(types.CARD_DISCARD_FROM_HAND_INIT, endDiscardAnimation);
+    yield takeEvery(types.CARD_DISCARD_FROM_HAND_INIT, endDiscardAnimation);
 }
 
 function* endDrawCardsInitAnimation() {
@@ -63,7 +63,7 @@ function* endDrawCardsInitAnimation() {
 }
 
 function* watchDrawCardsInit() {
-    yield* takeEvery(types.CARD_DRAW_CARDS_INIT, endDrawCardsInitAnimation);
+    yield takeEvery(types.CARD_DRAW_CARDS_INIT, endDrawCardsInitAnimation);
 }
 
 function* endInfectNeighbourAnimation(action) {
@@ -71,7 +71,7 @@ function* endInfectNeighbourAnimation(action) {
 }
 
 function* watchInfectNeighbour() {
-    yield* takeEvery(types.INFECT_NEIGHBOR, endInfectNeighbourAnimation);
+    yield takeEvery(types.INFECT_NEIGHBOR, endInfectNeighbourAnimation);
 }
 
 function* endCureDiseaseAnimation() {
@@ -79,5 +79,5 @@ function* endCureDiseaseAnimation() {
 }
 
 function* watchCureDisease() {
-    yield* takeEvery(types.PLAYER_CURE_DISEASE_COMPLETE, endCureDiseaseAnimation);
+    yield takeEvery(types.PLAYER_CURE_DISEASE_COMPLETE, endCureDiseaseAnimation);
 }

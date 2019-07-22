@@ -6,6 +6,8 @@ export class GameFacade {
     setState: (state: GameState) => void;
     getFullGameState: () => GameState;
     getAvailableMoves: () => MoveAction[];
+    /** only use this for debugging */
+    debugDispatchAction: (actionType: string) => void;
 }
 
 export class City {

@@ -12,5 +12,5 @@ function* logToConsole(action) {
 }
 
 function* watchAllForConsole() {
-    yield* takeEvery('*', a => logToConsole(a));
+    yield takeEvery('*', a => logToConsole(a.type));
 }

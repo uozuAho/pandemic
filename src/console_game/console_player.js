@@ -38,6 +38,9 @@ const commands = [
     new Command('a', 'print available actions', () => {
         console.log(game.getAvailableMoves());
     }),
+    new Command('d', 'dispatch action', actionType => {
+        game.debugDispatchAction(actionType);
+    }),
 ];
 
 const handler = new CommandLoopRunner(commands);

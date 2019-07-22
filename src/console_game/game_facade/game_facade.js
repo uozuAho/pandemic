@@ -67,6 +67,10 @@ export class GameFacade {
             new MoveAction(cities[k]['id'], cities[k]['name'], cities[k]['source']));
     }
 
+    debugDispatchAction(actionType) {
+        this._reduxStore.dispatch({ type: actionType });
+    }
+
     _getState() {
         return this._reduxStore.getState();
     }

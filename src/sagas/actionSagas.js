@@ -121,7 +121,9 @@ export function* drawPlayerCards() {
       }
     }
     yield put(drawCardsInit(cards));
+    console.log('a');
     yield take(types.ANIMATION_DRAW_CARDS_INIT_COMPLETE);
+    console.log('b');
 
     if (bothEpidemics) {
       const currentPlayer = yield select(sel.getCurrentPlayer);
