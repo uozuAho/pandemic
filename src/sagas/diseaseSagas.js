@@ -142,9 +142,9 @@ export function* infections() {
 }
 
 export function* watchTreatEradication() {
-  yield* takeEvery([types.PLAYER_TREAT_DISEASE, types.PLAYER_TREAT_ALL_DISEASE], checkForEradication);
+  yield takeEvery([types.PLAYER_TREAT_DISEASE, types.PLAYER_TREAT_ALL_DISEASE], checkForEradication);
 }
 
 export function* watchCureEradication() {
-  yield* takeEvery(types.PLAYER_CURE_DISEASE_COMPLETE, checkForEradication);
+  yield takeEvery(types.PLAYER_CURE_DISEASE_COMPLETE, checkForEradication);
 }

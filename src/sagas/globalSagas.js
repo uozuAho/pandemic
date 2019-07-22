@@ -135,19 +135,19 @@ export function* yieldVictory() {
 }
 
 export function* watchVictory() {
-  yield* takeEvery(types.PLAYER_CURE_DISEASE_COMPLETE, checkForVictory);
+  yield takeEvery(types.PLAYER_CURE_DISEASE_COMPLETE, checkForVictory);
 }
 
 export function* watchOutbreaksDefeat() {
-  yield* takeEvery(types.OUTBREAK_INIT, checkForOutbreaksDefeat);
+  yield takeEvery(types.OUTBREAK_INIT, checkForOutbreaksDefeat);
 }
 
 export function* watchCreateQuickGame() {
-  yield* takeEvery(types.CREATE_QUICK_GAME_INIT, createQuickGame);
+  yield takeEvery(types.CREATE_QUICK_GAME_INIT, createQuickGame);
 }
 
 export function* watchCreateCustomGame() {
-  yield* takeEvery(types.CREATE_CUSTOM_GAME_INIT, createCustomGame);
+  yield takeEvery(types.CREATE_CUSTOM_GAME_INIT, createCustomGame);
 }
 
 export function* watchDealCards() {

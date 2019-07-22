@@ -40,17 +40,17 @@ export function* dispatcherMove(action) {
 }
 
 export function* watchMedicAirlift() {
-  yield* takeEvery(types.EVENT_AIRLIFT_MOVE_TO_CITY, treatCuredDiseasesOnMedicMove);
+  yield takeEvery(types.EVENT_AIRLIFT_MOVE_TO_CITY, treatCuredDiseasesOnMedicMove);
 }
 
 export function* watchContPlannerInit() {
-  yield* takeEvery(types.CONT_PLANNER_INIT, contPlannerSpecial);
+  yield takeEvery(types.CONT_PLANNER_INIT, contPlannerSpecial);
 }
 
 export function* watchDispatcherMove() {
-  yield* takeEvery(types.DISPATCHER_CHOOSE_PLAYER, dispatcherMove);
+  yield takeEvery(types.DISPATCHER_CHOOSE_PLAYER, dispatcherMove);
 }
 
 export function* watchCureDisease() {
-  yield* takeEvery(types.PLAYER_CURE_DISEASE_COMPLETE, clearCubesNearMedic);
+  yield takeEvery(types.PLAYER_CURE_DISEASE_COMPLETE, clearCubesNearMedic);
 }

@@ -47,5 +47,5 @@ export function* processEvent(action) {
 }
 
 export function* watchEvents() {
-  yield* takeEvery(types.PLAYER_PLAY_EVENT_INIT, processEvent);
+  yield takeEvery(types.PLAYER_PLAY_EVENT_INIT, processEvent);
 }
