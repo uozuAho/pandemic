@@ -12,6 +12,11 @@ export class GameFacade {
 
     constructor() {}
 
+    isFinished() {
+        const status = this._getState().status;
+        return status === 'victory' | status === 'defeat';
+    }
+
     quickStartNewGame(numPlayers) {
         this._resetState();
         const store = this._reduxStore;
@@ -20,7 +25,7 @@ export class GameFacade {
     }
 
     move(city) {
-        const state = this.getFullGameState();
+        const state = this._getState();
         const player = getCurrentPlayer(state);
         const playerLocationId = state.map.playersLocations[player.id];
         const moveAction = this.getAvailableMoves().filter(m => m.cityName === city)[0];
@@ -30,7 +35,7 @@ export class GameFacade {
     }
 
     getSmallGameState() {
-        const state = this._reduxStore.getState();
+        const state = this._getState();
 
         return {
             ...state,
@@ -47,14 +52,18 @@ export class GameFacade {
     }
 
     getFullGameState() {
-        return this._reduxStore.getState();
+        return this._getState();
     }
 
     getAvailableMoves() {
-        const state = this.getFullGameState(0);
+        const state = this._getState();
         const cities = getAvailableCities(state);
         return Object.keys(cities).map(k =>
             new MoveAction(cities[k]['id'], cities[k]['name'], cities[k]['source']));
+    }
+
+    _getState() {
+        return this._reduxStore.getState();
     }
 
     _resetState() {

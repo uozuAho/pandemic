@@ -8,7 +8,7 @@ https://epidemic.netlify.com
 `npm run console`
 
 todo
+- configurable console log verbosity
+- feed game state to console/ai player in same way
 - dfs solver
-    - need ability to reset state to previous
 - config to disable some calls that don't work on console (see globalSagas todo)
-- config to disable action output to console
