@@ -25,11 +25,12 @@ export const animationEndWatchers = [
 function* endDealAnimations() {
     yield put(animationDealCardsInitComplete());
     yield put(animationDealCardsComplete());
-    yield put(animationInsertEpidemicCardsComplete());
 
-    while (true) {
+    // could be 'smarter' by checking state, but this is less code :)
+    for (let i = 0; i < 100; i++) {
         const state = yield select();
         if (state.status === 'prepare') {
+            yield put(animationInsertEpidemicCardsComplete());
             yield put(animationDrawInfectionCardComplete());
         } else {
             break;

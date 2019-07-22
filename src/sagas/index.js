@@ -1,7 +1,23 @@
-import { watchActionsLeft, watchMoveInit, watchMoveToCity, watchShareInit, watchCureInit, watchBuildStation } from './actionSagas';
+import { all } from 'redux-saga/effects';
+
+import { 
+  watchActionsLeft, 
+  watchMoveInit,
+  watchMoveToCity,
+  watchShareInit,
+  watchCureInit,
+  watchBuildStation
+} from './actionSagas';
+
 import { watchTreatEradication, watchCureEradication } from './diseaseSagas';
-import { watchCreateQuickGame, watchCreateCustomGame, watchVictory, watchOutbreaksDefeat,
-  watchDealCards } from './globalSagas';
+import {
+  watchCreateQuickGame,
+  watchCreateCustomGame,
+  watchVictory,
+  watchOutbreaksDefeat,
+  watchDealCards
+} from './globalSagas';
+
 import { watchEvents } from './eventSagas';
 import { watchMedicAirlift, watchContPlannerInit, watchDispatcherMove, watchCureDisease } from './roleSagas';
 import { getConsoleActionWatchers } from '../console_game/game_facade/action_listeners';
@@ -32,5 +48,5 @@ if (typeof window === 'undefined') {
 }
 
 export default function* rootSaga() {
-  yield watchers;
+  yield all(watchers);
 }
