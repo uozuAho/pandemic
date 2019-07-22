@@ -30,8 +30,13 @@ export class GameFacade {
         const playerLocationId = state.map.playersLocations[player.id];
         const moveAction = this.getAvailableMoves().filter(m => m.cityName === city)[0];
 
-        this._reduxStore.dispatch(moveInit(player.id));
-        this._reduxStore.dispatch(moveToCity(player.id, playerLocationId, moveAction.cityId, moveAction.moveType));
+        if (moveAction === undefined) {
+            console.error(`no city with name '${city}' in available moves. Available moves:`);
+            console.error(this.getAvailableMoves());
+        } else {
+            this._reduxStore.dispatch(moveInit(player.id));
+            this._reduxStore.dispatch(moveToCity(player.id, playerLocationId, moveAction.cityId, moveAction.moveType));
+        }
     }
 
     getSmallGameState() {
