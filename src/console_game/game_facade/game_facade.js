@@ -6,6 +6,7 @@ import {
 import { getAvailableCities } from '../../selectors/cities';
 import { moveInit, moveToCity } from '../../actions/mapActions';
 import { getCurrentPlayer } from '../../selectors';
+import { setState } from '../console_redux_actions';
 
 export class GameFacade {
 
@@ -42,8 +43,7 @@ export class GameFacade {
     }
 
     setState(state) {
-        console.log('todo: set state :)');
-        // this._reduxStore.dispatch();
+        this._reduxStore.dispatch(setState(state));
     }
 
     getFullGameState() {
