@@ -94,7 +94,7 @@ export function* dealCardsToPlayers() {
 
   // prevent blocking delay on nodejs
   if (typeof window !== 'undefined') {
-    yield call(delay, 1000);
+    yield delay(1000);
   }
 
   for (let i = 3; i > 0; i--) {

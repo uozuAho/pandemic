@@ -1,4 +1,4 @@
-import { select, put, take, fork, cancel, call, takeEvery } from 'redux-saga/effects';
+import { select, put, take, fork, cancel, call, takeEvery, delay } from 'redux-saga/effects';
 
 import { moveShowCities, moveComplete } from '../actions/mapActions';
 import { cureDiseaseShowCards } from '../actions/diseaseActions';
@@ -124,7 +124,7 @@ export function* drawPlayerCards() {
 
     if (bothEpidemics) {
       const currentPlayer = yield select(sel.getCurrentPlayer);
-      yield call(delay, 3000);
+      yield delay(3000);
       yield put(drawCardsHandle(cards[0], currentPlayer.id));
       yield put(drawCardsHandle(cards[1], currentPlayer.id));
       yield call(yieldEpidemic);
