@@ -1,5 +1,4 @@
-import { takeEvery, delay } from 'redux-saga';
-import { select, put, take, fork, cancel, call } from 'redux-saga/effects';
+import { select, put, take, fork, cancel, call, takeEvery, delay } from 'redux-saga/effects';
 
 import { moveShowCities, moveComplete } from '../actions/mapActions';
 import { cureDiseaseShowCards } from '../actions/diseaseActions';
@@ -96,7 +95,7 @@ function* checkIfHandWentUnderLimit() {
 
 export function* waitToDiscardIfOverLimit(playerId) {
   function* watchOverLimitDiscardComplete() {
-    yield* takeEvery(types.ANIMATION_CARD_DISCARD_FROM_HAND_COMPLETE, checkIfHandWentUnderLimit);
+    yield takeEvery(types.ANIMATION_CARD_DISCARD_FROM_HAND_COMPLETE, checkIfHandWentUnderLimit);
   }
 
   if (yield select(sel.isOverHandLimit, playerId)) {
@@ -125,7 +124,10 @@ export function* drawPlayerCards() {
 
     if (bothEpidemics) {
       const currentPlayer = yield select(sel.getCurrentPlayer);
-      yield call(delay, 3000);
+      // delays aren't nice when running in nodejs
+      if (typeof window !== 'undefined') {
+        yield delay(3000);
+      }
       yield put(drawCardsHandle(cards[0], currentPlayer.id));
       yield put(drawCardsHandle(cards[1], currentPlayer.id));
       yield call(yieldEpidemic);
@@ -166,31 +168,31 @@ export function* maybeDiscardStationCity(action) {
 }
 
 export function* watchMoveInit() {
-  yield* takeEvery(types.PLAYER_MOVE_INIT, showAvailableCities);
+  yield takeEvery(types.PLAYER_MOVE_INIT, showAvailableCities);
 }
 
 export function* watchMoveToCity() {
-  yield* takeEvery(types.PLAYER_MOVE_TO_CITY, movedToCity);
+  yield takeEvery(types.PLAYER_MOVE_TO_CITY, movedToCity);
 }
 
 export function* watchShareInit() {
-  yield* takeEvery(types.PLAYER_SHARE_INIT, showShareCandidates);
+  yield takeEvery(types.PLAYER_SHARE_INIT, showShareCandidates);
 }
 
 export function* watchActionsLeft() {
-  yield* takeEvery(types.ACTIONS, drawIfNoActionsLeft);
+  yield takeEvery(types.ACTIONS, drawIfNoActionsLeft);
 }
 
 export function* watchBuildStation() {
-  yield* takeEvery(types.PLAYER_BUILD_STATION, maybeDiscardStationCity);
+  yield takeEvery(types.PLAYER_BUILD_STATION, maybeDiscardStationCity);
 }
 
 export function* watchCureInit() {
-  yield* takeEvery(types.PLAYER_CURE_DISEASE_INIT, showCardsToCure);
+  yield takeEvery(types.PLAYER_CURE_DISEASE_INIT, showCardsToCure);
 }
 
 export function* watchForMoveComplete() {
-  yield* takeEvery(types.PLAYER_MOVE_TO_CITY, movedToCity);
+  yield takeEvery(types.PLAYER_MOVE_TO_CITY, movedToCity);
 }
 
 function* logToConsole(action) {
@@ -198,5 +200,5 @@ function* logToConsole(action) {
 }
 
 export function* watchAllForConsole() {
-  yield* takeEvery('*', a => logToConsole(a));
+  yield takeEvery('*', a => logToConsole(a));
 }

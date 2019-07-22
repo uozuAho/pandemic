@@ -1,5 +1,4 @@
-import { takeEvery } from 'redux-saga';
-import { select, put } from 'redux-saga/effects';
+import { select, put, takeEvery } from 'redux-saga/effects';
 
 import * as types from '../../constants/actionTypes';
 import {
@@ -13,6 +12,8 @@ import {
     animationInfectNeighborComplete,
     animationCureDiseaseComplete
 } from '../../actions/globalActions';
+import { drawCardsHandle } from '../../actions/cardActions';
+import { getCurrentPlayer } from '../../selectors';
 
 export const animationEndWatchers = [
     watchDealCardsInit(),
@@ -20,17 +21,20 @@ export const animationEndWatchers = [
     watchDiscardInit(),
     watchDrawCardsInit(),
     watchInfectNeighbour(),
-    watchCureDisease()
+    watchCureDisease(),
+    watchDrawCardsHandleInit(),
+    watchInfectCity()
 ];
 
 function* endDealAnimations() {
     yield put(animationDealCardsInitComplete());
     yield put(animationDealCardsComplete());
-    yield put(animationInsertEpidemicCardsComplete());
 
-    while (true) {
+    // could be 'smarter' by checking state, but this is less code :)
+    for (let i = 0; i < 100; i++) {
         const state = yield select();
         if (state.status === 'prepare') {
+            yield put(animationInsertEpidemicCardsComplete());
             yield put(animationDrawInfectionCardComplete());
         } else {
             break;
@@ -39,7 +43,7 @@ function* endDealAnimations() {
 }
 
 function* watchDealCardsInit() {
-    yield* takeEvery(types.DEAL_CARDS_INIT, endDealAnimations);
+    yield takeEvery(types.DEAL_CARDS_INIT, endDealAnimations);
 }
 
 function* endMoveAnimations() {
@@ -47,7 +51,7 @@ function* endMoveAnimations() {
 }
 
 function* watchMoveToCity() {
-    yield* takeEvery(types.PLAYER_MOVE_TO_CITY, endMoveAnimations);
+    yield takeEvery(types.PLAYER_MOVE_TO_CITY, endMoveAnimations);
 }
 
 function* endDiscardAnimation(action) {
@@ -55,7 +59,7 @@ function* endDiscardAnimation(action) {
 }
 
 function* watchDiscardInit() {
-    yield* takeEvery(types.CARD_DISCARD_FROM_HAND_INIT, endDiscardAnimation);
+    yield takeEvery(types.CARD_DISCARD_FROM_HAND_INIT, endDiscardAnimation);
 }
 
 function* endDrawCardsInitAnimation() {
@@ -63,7 +67,7 @@ function* endDrawCardsInitAnimation() {
 }
 
 function* watchDrawCardsInit() {
-    yield* takeEvery(types.CARD_DRAW_CARDS_INIT, endDrawCardsInitAnimation);
+    yield takeEvery(types.CARD_DRAW_CARDS_INIT, endDrawCardsInitAnimation);
 }
 
 function* endInfectNeighbourAnimation(action) {
@@ -71,7 +75,7 @@ function* endInfectNeighbourAnimation(action) {
 }
 
 function* watchInfectNeighbour() {
-    yield* takeEvery(types.INFECT_NEIGHBOR, endInfectNeighbourAnimation);
+    yield takeEvery(types.INFECT_NEIGHBOR, endInfectNeighbourAnimation);
 }
 
 function* endCureDiseaseAnimation() {
@@ -79,5 +83,24 @@ function* endCureDiseaseAnimation() {
 }
 
 function* watchCureDisease() {
-    yield* takeEvery(types.PLAYER_CURE_DISEASE_COMPLETE, endCureDiseaseAnimation);
+    yield takeEvery(types.PLAYER_CURE_DISEASE_COMPLETE, endCureDiseaseAnimation);
+}
+
+function* handleDrawCardsInit(action) {
+    // not ending an animation, but this action is dispatched from a react component, tsk tsk
+    const currentPlayer = yield select(getCurrentPlayer);
+    yield put(drawCardsHandle(action.card, currentPlayer.id));
+}
+
+function* watchDrawCardsHandleInit() {
+    yield takeEvery(types.CARD_DRAW_CARDS_HANDLE_INIT, handleDrawCardsInit);
+}
+
+function* handleInfectCity() {
+    // not ending an animation, but this action is dispatched from a react component, tsk tsk
+    yield put(animationDrawInfectionCardComplete());
+}
+
+function* watchInfectCity() {
+    yield takeEvery(types.INFECT_CITY, handleInfectCity);
 }

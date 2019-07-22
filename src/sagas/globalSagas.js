@@ -1,5 +1,5 @@
-import { takeEvery, takeLatest, delay, END } from 'redux-saga';
-import { put, select, call, take, fork, cancel } from 'redux-saga/effects';
+import { END } from 'redux-saga';
+import { put, select, call, take, fork, cancel, takeEvery, takeLatest, delay } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { difference, sample, sampleSize, shuffle } from 'lodash';
@@ -94,7 +94,7 @@ export function* dealCardsToPlayers() {
 
   // prevent blocking delay on nodejs
   if (typeof window !== 'undefined') {
-    yield call(delay, 1000);
+    yield delay(1000);
   }
 
   for (let i = 3; i > 0; i--) {
@@ -135,19 +135,19 @@ export function* yieldVictory() {
 }
 
 export function* watchVictory() {
-  yield* takeEvery(types.PLAYER_CURE_DISEASE_COMPLETE, checkForVictory);
+  yield takeEvery(types.PLAYER_CURE_DISEASE_COMPLETE, checkForVictory);
 }
 
 export function* watchOutbreaksDefeat() {
-  yield* takeEvery(types.OUTBREAK_INIT, checkForOutbreaksDefeat);
+  yield takeEvery(types.OUTBREAK_INIT, checkForOutbreaksDefeat);
 }
 
 export function* watchCreateQuickGame() {
-  yield* takeEvery(types.CREATE_QUICK_GAME_INIT, createQuickGame);
+  yield takeEvery(types.CREATE_QUICK_GAME_INIT, createQuickGame);
 }
 
 export function* watchCreateCustomGame() {
-  yield* takeEvery(types.CREATE_CUSTOM_GAME_INIT, createCustomGame);
+  yield takeEvery(types.CREATE_CUSTOM_GAME_INIT, createCustomGame);
 }
 
 export function* watchDealCards() {

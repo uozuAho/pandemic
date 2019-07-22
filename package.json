@@ -5,7 +5,7 @@
   "scripts": {
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message remove-dist",
-    "start": "npm-run-all --parallel test:watch open:src lint:watch",
+    "start": "npm-run-all --parallel open:src",
     "open:src": "babel-node tools/srcServer.js",
     "open:dist": "babel-node tools/distServer.js",
     "lint": "esw webpack.config.* src tools",
@@ -46,8 +46,8 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.4.0",
     "react-router-redux": "^4.0.5",
-    "redux": "^3.5.2",
-    "redux-saga": "^0.10.4",
+    "redux": "^4.0.4",
+    "redux-saga": "^1.0.5",
     "redux-state-history": "^0.1.4",
     "web-animations-js": "^2.2.1"
   },

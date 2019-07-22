@@ -1,5 +1,4 @@
-import { takeEvery } from 'redux-saga';
-import { call } from 'redux-saga/effects';
+import { call, takeEvery } from 'redux-saga/effects';
 
 import { animationEndWatchers } from "./animation_enders";
 
@@ -12,5 +11,5 @@ function* logToConsole(action) {
 }
 
 function* watchAllForConsole() {
-    yield* takeEvery('*', a => logToConsole(a));
+    yield takeEvery('*', a => logToConsole(a.type));
 }

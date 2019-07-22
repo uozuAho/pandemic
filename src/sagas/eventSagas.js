@@ -1,5 +1,4 @@
-import { takeEvery } from 'redux-saga';
-import { select, put, take } from 'redux-saga/effects';
+import { select, put, take, takeEvery } from 'redux-saga/effects';
 
 import { forecastShowCards, discardFromHandInit, contPlannerEventComplete } from '../actions/cardActions';
 import { govGrantShowCities, airliftShowCities } from '../actions/mapActions';
@@ -48,5 +47,5 @@ export function* processEvent(action) {
 }
 
 export function* watchEvents() {
-  yield* takeEvery(types.PLAYER_PLAY_EVENT_INIT, processEvent);
+  yield takeEvery(types.PLAYER_PLAY_EVENT_INIT, processEvent);
 }
