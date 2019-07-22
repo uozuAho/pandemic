@@ -37,4 +37,4 @@ dist
 
 docs/
 
-current_state.json
+current_state*.json

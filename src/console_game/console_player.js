@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 import { CommandLoopRunner, Command } from './command_handler';
-import { GameFacade } from './game_facade';
+import { GameFacade } from './game_facade/game_facade';
 
 const game = new GameFacade();
 
@@ -13,6 +13,12 @@ const commands = [
     new Command('sf', 'print interesting state to file', () => {
         const stateStr = JSON.stringify(game.getSmallGameState(), null, 2);
         fs.writeFileSync('current_state.json', stateStr, e => {
+            console.log(e);
+        });
+    }),
+    new Command('sff', 'print full state to file (big!)', () => {
+        const stateStr = JSON.stringify(game.getFullGameState(), null, 2);
+        fs.writeFileSync('current_state_full.json', stateStr, e => {
             console.log(e);
         });
     }),
