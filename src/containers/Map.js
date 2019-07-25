@@ -25,7 +25,7 @@ class Map extends React.Component {
     players: PropTypes.objectOf(playerType.isRequired).isRequired,
     currentMove: PropTypes.object.isRequired,
     availableCities: PropTypes.objectOf(cityType).isRequired,
-    currentPlayerId: PropTypes.string.isRequired,
+    currentPlayerId: PropTypes.string,
     isDriveAvailable: PropTypes.func.isRequired,
     initialInfectedCity: PropTypes.string,
     infectionCardDrawn: PropTypes.shape({

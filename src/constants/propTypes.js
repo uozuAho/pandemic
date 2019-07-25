@@ -19,8 +19,8 @@ export const pathType = PropTypes.arrayOf(
 export const diseaseType = PropTypes.oneOf(DISEASES);
 
 export const cardProps = {
-  cardType: PropTypes.oneOf(['city', 'event', 'epidemic']).isRequired,
-  id: PropTypes.string.isRequired
+  cardType: PropTypes.oneOf(['city', 'event', 'epidemic']),
+  id: PropTypes.string
 };
 
 export const cardType = PropTypes.shape(cardProps);
