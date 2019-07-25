@@ -7,7 +7,7 @@ import platform from 'platform';
 
 class StateReporter extends React.Component {
   static propTypes = {
-    history: PropTypes.object.isRequired
+    history: PropTypes.func.isRequired
   }
 
   constructor(props) {
