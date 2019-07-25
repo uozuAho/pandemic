@@ -20,7 +20,9 @@ describe('CurrentMoveReducer', () => {
     },
     playerToDiscard: null,
     playerToMove: null,
-    curingDisease: {},
+    curingDisease: {
+      cureInProgress: false
+    },
     skipInfectionsStep: false,
     govGrantCities: [],
     resPop: {},
@@ -35,6 +37,12 @@ describe('CurrentMoveReducer', () => {
     epidemicInfectionCard: {},
     epidemicStep: null,
     continueMessage: null
+  });
+
+  it('sets cureInProgress to false on initial state', () => {
+    const initialState = reducer(undefined, {});
+
+    expect(initialState.curingDisease.cureInProgress).to.eql(false);
   });
 
   it('resets move counter and switches players on PASS_TURN', () => {

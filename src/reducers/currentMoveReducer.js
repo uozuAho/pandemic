@@ -164,9 +164,9 @@ function curingDisease(state, action) {
       return { cureInProgress: action.color };
     case types.ANIMATION_CURE_DISEASE_COMPLETE:
     case types.PLAYER_CURE_DISEASE_CANCEL:
-      return {};
+      return { cureInProgress: false };
     default:
-      return state;
+      return { cureInProgress: false };
   }
 }
 

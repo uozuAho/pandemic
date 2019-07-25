@@ -8,6 +8,7 @@ https://epidemic.netlify.com
 `npm run console`
 
 todo
-- configurable console log verbosity
+- fix UI console errors, and discard on full hand not working
+- configurable console log verbosity (stashed)
 - dfs solver
 - config to disable some calls that don't work on console (see globalSagas todo)
