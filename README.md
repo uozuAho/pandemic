@@ -14,6 +14,5 @@ todo
     MultiCardPicker.getSelectedIds
     ~/src/components/MultiCardPicker.js
 
-- configurable console log verbosity (stashed)
 - dfs solver
 - config to disable some calls that don't work on console (see globalSagas todo)
