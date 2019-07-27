@@ -1,7 +1,7 @@
 import { call, takeEvery } from 'redux-saga/effects';
 
-import * as actionTypes from '../../constants/actionTypes';
-import cities from '../../constants/cities';
+import * as actionTypes from '../../../constants/actionTypes';
+import cities from '../../../constants/cities';
 
 export function* watchAllAndLog() {
     yield takeEvery('*', a => log(a));

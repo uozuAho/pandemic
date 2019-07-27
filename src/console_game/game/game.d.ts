@@ -30,11 +30,16 @@ export class GameState {
 
 export type MoveType = 'ops' | 'direct' | 'drive';
 
-export class MoveAction {
+interface GameAction {
+    public type: string;
+};
 
+export class MoveAction implements GameAction {
+
+    type: string;
     cityId: number;
     cityName: string;
     moveType: MoveType;
 
-    constructor(cityId: number, cityName: string, moveType: MoveType) {}
+    constructor(cityId: number, cityName: string, moveType: MoveType);
 }
