@@ -8,11 +8,6 @@ https://epidemic.netlify.com
 `npm run console`
 
 todo
-- fix UI console errors, and discard on full hand not working
-
-    TypeError: Cannot read property 'filter' of undefined
-    MultiCardPicker.getSelectedIds
-    ~/src/components/MultiCardPicker.js
-
 - dfs solver
+- bug: UI: discard on full hand not working
 - config to disable some calls that don't work on console (see globalSagas todo)
