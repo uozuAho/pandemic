@@ -1,7 +1,7 @@
 import { PandemicGame } from './game/game';
 import { AiAgentRandom } from './ai_agents/ai_agent_random';
 
-const MAX_MOVES = 5;
+const MAX_MOVES = 10;
 const game = new PandemicGame();
 game.quickStartNewGame(1);
 
