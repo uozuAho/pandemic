@@ -9,5 +9,13 @@ https://epidemic.netlify.com
 
 todo
 - dfs solver
-- bug: UI: discard on full hand not working
-- config to disable some calls that don't work on console (see globalSagas todo)
+- ui tests
+    - eg for discard ui not appearing
+
+bugs
+- discard ui doesn't appear when player must discard
+    - repro
+        - do dummy moves until next pickup requires discard, discard UI doesn't appear, can't do anything
+        - at this point, CardLayer.state.cardsDrawnAnimated is true, but should be false
+    - workaround
+        - setting CardLayer.state.cardsDrawnAnimated to false via react dev tools
