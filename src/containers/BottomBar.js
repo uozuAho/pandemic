@@ -178,7 +178,7 @@ class BottomBar extends React.Component {
           onPlayerPicked={this.onShareCandidatePicked}
           onCancel={this.props.actions.shareCardsCancel} />
       );
-    } else if (!isEmpty(curingDisease)) {
+    } else if (curingDisease.cureInProgress) {
       content = (
         <MultiCardPicker
           title={`Pick ${cardsNeededToCure} cards to cure the ${curingDisease.color} disease:`}

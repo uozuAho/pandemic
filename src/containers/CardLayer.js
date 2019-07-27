@@ -30,7 +30,7 @@ class CardLayer extends React.Component {
       handling: PropTypes.bool
     })).isRequired,
     difficulty: PropTypes.number.isRequired,
-    currentPlayerId: PropTypes.string.isRequired,
+    currentPlayerId: PropTypes.string,
     initialInfectedCity: PropTypes.string,
     infectingLocation: PropTypes.object,
     isDealingPlayerCards: PropTypes.bool,

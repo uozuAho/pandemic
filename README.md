@@ -8,6 +8,6 @@ https://epidemic.netlify.com
 `npm run console`
 
 todo
-- configurable console log verbosity
 - dfs solver
+- bug: UI: discard on full hand not working
 - config to disable some calls that don't work on console (see globalSagas todo)
