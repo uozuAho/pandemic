@@ -6,7 +6,9 @@ import {
 import { getAvailableCities } from '../../selectors/cities';
 import { moveInit, moveToCity } from '../../actions/mapActions';
 import { getCurrentPlayer } from '../../selectors';
+
 import { setState } from './redux/console_redux_actions';
+import { MoveAction } from './player_actions';
 
 export class PandemicGame {
 
@@ -77,14 +79,5 @@ export class PandemicGame {
 
     _resetState() {
         this._reduxStore = configureStore();
-    }
-}
-
-class MoveAction {
-    constructor(cityId, cityName, moveType) {
-        this.type = 
-        this.cityId = cityId;
-        this.cityName = cityName;
-        this.moveType = moveType;
     }
 }

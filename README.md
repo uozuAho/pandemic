@@ -8,6 +8,7 @@ https://epidemic.netlify.com
 `npm run console`
 
 todo
+- game playthrough spec, from known start state
 - dfs solver
 - ui tests
     - eg for discard ui not appearing
