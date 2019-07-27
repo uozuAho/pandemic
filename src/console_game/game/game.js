@@ -12,7 +12,9 @@ import { MoveAction } from './player_actions';
 
 export class PandemicGame {
 
-    constructor() {}
+    constructor() {
+        this._resetState();
+    }
 
     isFinished() {
         const status = this._getState().status;

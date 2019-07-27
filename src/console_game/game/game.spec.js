@@ -20,5 +20,5 @@ describe('game', () => {
             const player0Location = game.getFullGameState().map.playersLocations[0];
             expect(player0Location).to.equal(chicago.id);
         });
-    })
+    });
 });

@@ -33,7 +33,8 @@ const NOT_INTERESTING_ACTIONS = [
     actionTypes.CREATE_GAME,
     actionTypes.CREATE_QUICK_GAME_INIT,
     actionTypes.CARD_DRAW_CARDS_INIT,
-    actionTypes.CARD_DRAW_CARDS_HANDLE_INIT
+    actionTypes.CARD_DRAW_CARDS_HANDLE_INIT,
+    'SET_STATE'
 ]
 
 function isInterestingAction(action) {
