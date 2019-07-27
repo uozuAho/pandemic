@@ -1,5 +1,5 @@
 import { GameFacade } from './game_facade/game_facade';
-import { AiAgentRandom } from './ai_agent/ai_agent_random';
+import { AiAgentRandom } from './ai_agents/ai_agent_random';
 
 const MAX_MOVES = 1000;
 const game = new GameFacade();
