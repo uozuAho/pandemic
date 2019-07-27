@@ -37,7 +37,7 @@ function logInterestingStuff(action) {
 }
 
 function* log(action) {
-    yield call(logEntireAction, action);
+    yield call(logActionType, action);
 }
 
 function* watchAllForConsole() {

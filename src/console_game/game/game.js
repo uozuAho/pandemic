@@ -6,9 +6,9 @@ import {
 import { getAvailableCities } from '../../selectors/cities';
 import { moveInit, moveToCity } from '../../actions/mapActions';
 import { getCurrentPlayer } from '../../selectors';
-import { setState } from '../console_redux_actions';
+import { setState } from '../game/console_redux_actions';
 
-export class GameFacade {
+export class PandemicGame {
 
     constructor() {}
 

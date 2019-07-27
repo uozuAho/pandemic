@@ -6,12 +6,9 @@ export class AiAgentRandom {
         this._game = game;
     }
 
-    playUntilEnd() {
-        while (!this._game.isFinished()) {
-            const moves = this._game.getAvailableMoves();
-            if (moves.length === 0) {
-                break;
-            }
+    playNextMove() {
+        const moves = this._game.getAvailableMoves();
+        if (moves.length > 0) {
             this._game.move(moves[0].cityName);
         }
     }

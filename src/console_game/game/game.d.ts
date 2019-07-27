@@ -1,4 +1,4 @@
-export class GameFacade {
+export class PandemicGame {
     isFinished(): boolean;
     quickStartNewGame: (numPlayers: number) => void;
     move: (cityName: string) => void;
