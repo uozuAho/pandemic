@@ -1,8 +1,8 @@
-import { GameFacade } from './game_facade/game_facade';
+import { PandemicGame } from './game/game';
 import { AiAgentRandom } from './ai_agents/ai_agent_random';
 
 const MAX_MOVES = 1000;
-const game = new GameFacade();
+const game = new PandemicGame();
 game.quickStartNewGame(1);
 
 const agent = new AiAgentRandom(game);

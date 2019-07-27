@@ -1,9 +1,9 @@
 import fs from 'fs';
 
 import { CommandLoopRunner, Command } from './command_handler';
-import { GameFacade } from './game_facade/game_facade';
+import { PandemicGame } from './game/game';
 
-const game = new GameFacade();
+const game = new PandemicGame();
 
 const writeToFile = (obj, filename) => {
     const objStr = JSON.stringify(obj, null, 2);

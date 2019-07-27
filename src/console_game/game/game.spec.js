@@ -1,13 +1,13 @@
 import { expect } from 'chai';
-import { GameFacade } from "./game_facade";
+import { PandemicGame } from "./game";
 import cities from '../../constants/cities';
 
-describe('game_facade', () => {
+describe('game', () => {
 
-    let game = new GameFacade();
+    let game = new PandemicGame();
 
     beforeEach(() => {
-        game = new GameFacade();
+        game = new PandemicGame();
     });
 
     describe('new 1 player game', () => {

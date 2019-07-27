@@ -1,7 +1,7 @@
-import { GameFacade } from '../game_facade/game_facade';
+import { PandemicGame } from '../game/game';
 
 export interface AiAgent {
-    constructor(game: GameFacade);
+    constructor(game: PandemicGame);
 
     playNextMove(): void;
 }
