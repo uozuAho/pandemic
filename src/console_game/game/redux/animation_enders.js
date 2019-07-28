@@ -1,6 +1,6 @@
 import { select, put, takeEvery } from 'redux-saga/effects';
 
-import * as types from '../../constants/actionTypes';
+import * as types from '../../../constants/actionTypes';
 import {
     animationDealCardsInitComplete,
     animationDealCardsComplete,
@@ -11,9 +11,9 @@ import {
     animationDrawCardsInitComplete,
     animationInfectNeighborComplete,
     animationCureDiseaseComplete
-} from '../../actions/globalActions';
-import { drawCardsHandle } from '../../actions/cardActions';
-import { getCurrentPlayer } from '../../selectors';
+} from '../../../actions/globalActions';
+import { drawCardsHandle } from '../../../actions/cardActions';
+import { getCurrentPlayer } from '../../../selectors';
 
 export const animationEndWatchers = [
     watchDealCardsInit(),

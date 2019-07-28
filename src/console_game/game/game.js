@@ -6,11 +6,15 @@ import {
 import { getAvailableCities } from '../../selectors/cities';
 import { moveInit, moveToCity } from '../../actions/mapActions';
 import { getCurrentPlayer } from '../../selectors';
-import { setState } from '../game/console_redux_actions';
 
-export class PandemicGame {
+import { setState, resetState } from './redux/console_redux_actions';
+import { MoveAction } from './player_actions';
 
-    constructor() {}
+class PandemicGame {
+
+    constructor() {
+        this._reduxStore = configureStore();
+    }
 
     isFinished() {
         const status = this._getState().status;
@@ -18,7 +22,7 @@ export class PandemicGame {
     }
 
     quickStartNewGame(numPlayers) {
-        this._resetState();
+        this.resetState();
         const store = this._reduxStore;
         store.dispatch(createQuickGameInit(numPlayers));
         store.dispatch(dealCardsInit());
@@ -56,6 +60,10 @@ export class PandemicGame {
         this._reduxStore.dispatch(setState(state));
     }
 
+    resetState() {
+        this._reduxStore.dispatch(resetState());
+    }
+
     getFullGameState() {
         return this._getState();
     }
@@ -74,16 +82,6 @@ export class PandemicGame {
     _getState() {
         return this._reduxStore.getState();
     }
-
-    _resetState() {
-        this._reduxStore = configureStore();
-    }
 }
 
-class MoveAction {
-    constructor(cityId, cityName, moveType) {
-        this.cityId = cityId;
-        this.cityName = cityName;
-        this.moveType = moveType;
-    }
-}
+export const PandemicGameInstance = new PandemicGame();

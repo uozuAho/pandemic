@@ -20,7 +20,7 @@ import {
 
 import { watchEvents } from './eventSagas';
 import { watchMedicAirlift, watchContPlannerInit, watchDispatcherMove, watchCureDisease } from './roleSagas';
-import { getConsoleActionWatchers } from '../console_game/game/action_listeners';
+import { getConsoleActionWatchers } from '../console_game/game/redux/action_listeners';
 
 let watchers = [
   watchCreateQuickGame(),

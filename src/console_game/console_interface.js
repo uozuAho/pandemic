@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-import { CommandLoopRunner, Command } from './console_command_handler/command_handler_handler/command_handler';
+import { CommandLoopRunner, Command } from './console_command_handler/command_handler';
 import { PandemicGame } from './game/game';
 
 const game = new PandemicGame();

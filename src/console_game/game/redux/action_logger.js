@@ -1,7 +1,7 @@
 import { call, takeEvery } from 'redux-saga/effects';
 
-import * as actionTypes from '../../constants/actionTypes';
-import cities from '../../constants/cities';
+import * as actionTypes from '../../../constants/actionTypes';
+import cities from '../../../constants/cities';
 
 export function* watchAllAndLog() {
     yield takeEvery('*', a => log(a));
@@ -33,7 +33,8 @@ const NOT_INTERESTING_ACTIONS = [
     actionTypes.CREATE_GAME,
     actionTypes.CREATE_QUICK_GAME_INIT,
     actionTypes.CARD_DRAW_CARDS_INIT,
-    actionTypes.CARD_DRAW_CARDS_HANDLE_INIT
+    actionTypes.CARD_DRAW_CARDS_HANDLE_INIT,
+    'SET_STATE'
 ]
 
 function isInterestingAction(action) {

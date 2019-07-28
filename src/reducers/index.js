@@ -40,6 +40,10 @@ const combinedReducer = combineReducers({
 });
 
 export default (state, action) => {
+  if (action.type === types.RESET_STATE) {
+    state = undefined;
+  }
+
   if (action.type === types.SET_STATE) {
     return action.state;
   }
