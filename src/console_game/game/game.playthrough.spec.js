@@ -1,13 +1,14 @@
 import { expect } from 'chai';
 
 import * as initState from './game.playthrough.spec.init.state.json';
-import { PandemicGame } from './game.js';
+import { PandemicGameInstance } from './game.js';
 
 describe('game playthrough', () => {
 
-    let game = new PandemicGame();
+    let game = PandemicGameInstance;
 
     beforeEach(() => {
+        game.resetState();
         game.setState(initState);
     });
 

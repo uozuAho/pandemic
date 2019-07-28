@@ -1,13 +1,13 @@
 import { expect } from 'chai';
-import { PandemicGame } from "./game";
 import cities from '../../constants/cities';
+import { PandemicGameInstance } from './game';
 
 describe('game', () => {
 
-    let game = new PandemicGame();
+    const game = PandemicGameInstance;
 
     beforeEach(() => {
-        game = new PandemicGame();
+        game.resetState();
     });
 
     describe('new 1 player game', () => {
