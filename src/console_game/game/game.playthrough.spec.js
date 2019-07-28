@@ -13,6 +13,23 @@ describe('game playthrough', () => {
     });
 
     it('playthrough 1', () => {
-        expect(game.getFullGameState().currentMove.actionsLeft).to.equal(4);
+        let state = game.getFullGameState();
+        expect(state.currentMove.actionsLeft).to.equal(4);
+        expect(state.players[0].hand.length).to.equal(5);
+
+        game.move('Chicago');
+        game.move('Atlanta');
+        game.move('Chicago');
+        game.move('Atlanta');
+
+        state = game.getFullGameState();
+        expect(state.players[0].hand.length).to.equal(7);
+
+        game.move('Chicago');
+        game.move('Atlanta');
+        game.move('Chicago');
+        game.move('Atlanta');
+
+        console.log('asd');
     });
 });

@@ -26,6 +26,14 @@ export class City {
 
 export class GameState {
     status: 'prepare' | 'playing' | 'victory' | 'defeat';
+    players: {
+        [id: number]: {
+            id: number;
+            name: string;
+            role: string;
+            hand: PlayerCard[];
+        }
+    };
     currentMove: {
         player: number,
         availableCities: {[id: number]: City}
@@ -33,6 +41,12 @@ export class GameState {
     map: {
         playersLocations: {[id: number]: number}
     };
+}
+
+export class PlayerCard {
+    id: number | string;
+    cardType: string;
+    color?: string;
 }
 
 export type MoveType = 'ops' | 'direct' | 'drive';
