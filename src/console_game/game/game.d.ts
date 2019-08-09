@@ -36,7 +36,8 @@ export class GameState {
     };
     currentMove: {
         player: number,
-        availableCities: {[id: number]: City}
+        availableCities: {[id: number]: City},
+        playerToDiscard: number | null
     };
     map: {
         playersLocations: {[id: number]: number}

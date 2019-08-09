@@ -8,3 +8,11 @@ export class MoveAction {
         this.moveType = moveType;
     }
 }
+
+export class DiscardAction {
+    constructor(cityId, cityName) {
+        this.type = actionTypes.DISCARD;
+        this.cityId = cityId;
+        this.cityName = cityName;
+    }
+}

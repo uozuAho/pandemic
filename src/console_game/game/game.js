@@ -5,10 +5,10 @@ import {
 } from '../../actions/globalActions';
 import { getAvailableCities } from '../../selectors/cities';
 import { moveInit, moveToCity } from '../../actions/mapActions';
-import { getCurrentPlayer } from '../../selectors';
+import { getCurrentPlayer, getCurrentPlayerHand } from '../../selectors';
 
 import { setState, resetState } from './redux/console_redux_actions';
-import { MoveAction } from './player_actions';
+import { MoveAction, DiscardAction } from './player_actions';
 
 class PandemicGame {
 
@@ -70,9 +70,14 @@ class PandemicGame {
 
     getAvailableMoves() {
         const state = this._getState();
-        const cities = getAvailableCities(state);
-        return Object.keys(cities).map(k =>
-            new MoveAction(cities[k]['id'], cities[k]['name'], cities[k]['source']));
+        if (state.currentMove.playerToDiscard) {
+            return getCurrentPlayerHand(state).map(c => new DiscardAction(c.id, c.name));
+        }
+        else {
+            const cities = getAvailableCities(state);
+            return Object.keys(cities).map(k =>
+                new MoveAction(cities[k]['id'], cities[k]['name'], cities[k]['source']));
+        }
     }
 
     debugDispatchAction(actionType) {
