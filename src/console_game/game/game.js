@@ -9,6 +9,8 @@ import { getCurrentPlayer, getCurrentPlayerHand } from '../../selectors';
 
 import { setState, resetState } from './redux/console_redux_actions';
 import { MoveAction, DiscardAction } from './player_actions';
+import * as actionTypes from './player_action_types';
+import { discardFromHandInit } from '../../actions/cardActions';
 
 class PandemicGame {
 
@@ -32,14 +34,31 @@ class PandemicGame {
         const state = this._getState();
         const player = getCurrentPlayer(state);
         const playerLocationId = state.map.playersLocations[player.id];
-        const moveAction = this.getAvailableMoves().filter(m => m.cityName === city)[0];
+        const moveAction = this.getAvailableActions().filter(m => m.cityName === city)[0];
+
+        // todo: don't allow action that's not a move
 
         if (moveAction === undefined) {
-            console.error(`no city with name '${city}' in available moves. Available moves:`);
-            console.error(this.getAvailableMoves());
+            console.error(`no city with name '${city}' in available actions. Available actions:`);
+            console.error(this.getAvailableActions());
         } else {
             this._reduxStore.dispatch(moveInit(player.id));
             this._reduxStore.dispatch(moveToCity(player.id, playerLocationId, moveAction.cityId, moveAction.moveType));
+        }
+    }
+
+    discard(name) {
+        const state = this._getState();
+        const player = getCurrentPlayer(state);
+        const playerLocationId = state.map.playersLocations[player.id];
+        const action = this.getAvailableActions().filter(m => m.cityName === name)[0];
+
+        if (action === undefined || action.type !== actionTypes.DISCARD) {
+            console.error(`no card to discard with name '${city}'. Available actions:`);
+            console.error(this.getAvailableActions());
+        } else {
+            this._reduxStore.dispatch(discardFromHandInit(/* aarrgh need card type */));
+            // this._reduxStore.dispatch(moveToCity(player.id, playerLocationId, action.cityId, action.moveType));
         }
     }
 
@@ -68,7 +87,7 @@ class PandemicGame {
         return this._getState();
     }
 
-    getAvailableMoves() {
+    getAvailableActions() {
         const state = this._getState();
         if (state.currentMove.playerToDiscard) {
             return getCurrentPlayerHand(state).map(c => new DiscardAction(c.id, c.name));

@@ -8,11 +8,12 @@ export class PandemicGame {
     isFinished(): boolean;
     quickStartNewGame: (numPlayers: number) => void;
     move: (cityName: string) => void;
+    discard: (name: string) => void;
     getSmallGameState: () => GameState;
     setState: (state: GameState) => void;
     resetState: () => void;
     getFullGameState: () => GameState;
-    getAvailableMoves: () => MoveAction[];
+    getAvailableActions: () => GameAction[];
     /** only use this for debugging */
     debugDispatchAction: (actionType: string) => void;
 }
@@ -64,4 +65,14 @@ export class MoveAction implements GameAction {
     moveType: MoveType;
 
     constructor(cityId: number, cityName: string, moveType: MoveType);
+}
+
+export class DiscardAction implements GameAction {
+
+    type: string;
+    cityId: number;
+    // todo: this can be an event card. 'cityName' doesn't make sense
+    cityName: string;
+
+    constructor(cityId: number, cityName: string);
 }

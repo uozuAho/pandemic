@@ -34,13 +34,14 @@ describe('game playthrough', () => {
         state = game.getFullGameState();
         expect(state.currentMove.playerToDiscard).to.equal('0');
 
-        const availableMoves = game.getAvailableMoves();
+        const availableMoves = game.getAvailableActions();
         expect(availableMoves.length).to.equal(9);
         for (const type of availableMoves.map(m => m.type)) {
             expect(type).to.equal(actionTypes.DISCARD);
         }
 
-        // todo: discard Cairo and Chicago
+        game.discard('Cairo');
+        game.discard('Chicago');
 
         console.log('asd');
     });
